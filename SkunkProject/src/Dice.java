@@ -1,14 +1,6 @@
-import edu.princeton.cs.introcs.StdOut;
+import java.util.function.BooleanSupplier;
 
-/**
- * Dice represents a single pair of rollable Die objects, randomly generating
- * sums of their two values
- * 
- * This is a Javadoc comment: add more to your finished class below
- * 
- * @author eric
- *
- */
+import edu.princeton.cs.introcs.StdOut;
 
 public class Dice
 {
@@ -18,6 +10,8 @@ public class Dice
 	private int lastRoll;
 	private Die die1;
 	private Die die2;
+	private Boolean skunk = false;
+	private Boolean deuce = false;
 
 	// Constructors (object initializers) also can be declared anywhere
 	// Convention: after instance fields/variables
@@ -36,6 +30,7 @@ public class Dice
 	{
 		this.die1 = die1;
 		this.die2 = die2;
+		checkRoll();
 	}
 
 	// Instance methods can also be declared anywhere in body of class
@@ -54,9 +49,22 @@ public class Dice
 		die1.roll();
 		die2.roll();
 		this.lastRoll = die1.getLastRoll() + die2.getLastRoll();
-
+		checkRoll();
 	}
 
+	public void checkRoll()
+	{
+		if (die1.getLastRoll() == 1 && die2.getLastRoll() == 1)
+			deuce = true;
+		else if (die1.getLastRoll() == 1 || die2.getLastRoll() == 1)
+			skunk = true;
+		else 
+		{
+			skunk = false;
+			deuce = false;
+		}
+	}
+	
 	// the following method converts the internals of
 	// this Dice object, and returns a descriptive String:
 	//
@@ -68,27 +76,31 @@ public class Dice
 		return "Dice with last roll: " + getLastRoll() + " => " + die1.getLastRoll() + " + " + die2.getLastRoll();
 	}
 
+	public Boolean isSkunk()
+	{
+		return skunk;
+	}
+
+	public Boolean isDeuce()
+	{
+		return deuce;
+	}
+
 	// static methods can go anywhere - but at end is one convention
 
-	public static final int NUM_TRIALS = 360;
-
-	public static void main(String[] args)
-	{
-		// simulate repeated rolls of Dice, counting the many double skunks
-		
-		Dice dice = new Dice();
-		int doubleSkunkCount = 0;
-
-		for (int i = 0; i < NUM_TRIALS; i++)
-		{
-			dice.roll();
-			StdOut.println(dice);
-
-			if (dice.getLastRoll() == 2)
-				doubleSkunkCount++;
-		}
-
-		StdOut.println("Actual count: " + doubleSkunkCount);
-		StdOut.println("Expected count: " + (NUM_TRIALS / 36.0));
-	}
+	/*
+	 * public static final int NUM_TRIALS = 360;
+	 * 
+	 * public static void main(String[] args) { // simulate repeated rolls of
+	 * Dice, counting the many double skunks
+	 * 
+	 * Dice dice = new Dice(); int doubleSkunkCount = 0;
+	 * 
+	 * for (int i = 0; i < NUM_TRIALS; i++) { dice.roll(); StdOut.println(dice);
+	 * 
+	 * if (dice.getLastRoll() == 2) doubleSkunkCount++; }
+	 * 
+	 * StdOut.println("Actual count: " + doubleSkunkCount);
+	 * StdOut.println("Expected count: " + (NUM_TRIALS / 36.0)); }
+	 */
 }
