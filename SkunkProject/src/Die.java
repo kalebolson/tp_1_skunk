@@ -24,6 +24,11 @@ public class Die
 	{
 		this.lastRoll = (int) (Math.random() * 6 + 1);
 	}
+	
+	public String toString()
+	{
+		return ("Die: " + this.lastRoll);
+	}
 }
 
 

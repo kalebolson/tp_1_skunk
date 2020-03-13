@@ -29,11 +29,10 @@ public class TestDie
 	 @Test
 
 	 // testing the toString method
-	 public void tesToString1()
+	 public void testToString1()
 	 {
 	     Die die1 = new Die();
-
-	     assertEquals(die1.toString(), "Die");
+	     assertNotEquals(die1.toString(), "Die");
 	 }
 	 
 	 @Test
@@ -41,8 +40,7 @@ public class TestDie
 	 public void testToString2() 
 	 {
 		 Die die2 = new Die();
-		    String result = "Die: " + die2.getLastRoll();
-		    assertEquals(die2.toString(), "Die: " + die2.getLastRoll());
-
-		}
+		 String result = "Die: " + die2.getLastRoll();
+		 assertEquals(die2.toString(), result);
+	 }
 }
