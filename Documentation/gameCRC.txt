@@ -1,0 +1,14 @@
+Class: 
+Game
+
+Responsibilities:
+List of players (know)
+Current turn (know)
+Current scores (know)
+Update scores (do)
+Start (do)
+End (do)
+
+Collaborations:
+Player
+Turn

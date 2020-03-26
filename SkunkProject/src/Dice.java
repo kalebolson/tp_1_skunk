@@ -54,10 +54,13 @@ public class Dice
 
 	public void checkRoll()
 	{
-		if (die1.getLastRoll() == 1 && die2.getLastRoll() == 1)
-			deuce = true;
-		else if (die1.getLastRoll() == 1 || die2.getLastRoll() == 1)
+		if (die1.getLastRoll() == 1 || die2.getLastRoll() == 1) 
+		{
 			skunk = true;
+			if (die1.getLastRoll() == 1 && die2.getLastRoll() == 1)
+				deuce = true;
+			else deuce = false;
+		}
 		else 
 		{
 			skunk = false;
@@ -73,7 +76,13 @@ public class Dice
 
 	public String toString()
 	{
-		return "Dice with last roll: " + getLastRoll() + " => " + die1.getLastRoll() + " + " + die2.getLastRoll();
+		String s = "";
+		if (deuce)
+			s+="You rolled a deuce! \n";
+		else if (skunk)
+			s+="You rolled a skunk! \n";
+		s += "Roll value: " + getLastRoll() + " => " + die1.getLastRoll() + " + " + die2.getLastRoll();
+		return s;
 	}
 
 	public Boolean isSkunk()

@@ -1,41 +1,65 @@
 import java.util.Scanner;
 
 public class HumanPlayer {
-	public String HumanPlayerName;
+	private String name;
+	private int points = 0;
+	private int chips = 0;
 	
-	public Scanner Input = new Scanner (System.in);
-	
-	/*Setter method for human player name 
-	 * The two methods below will help set the player's name to whatever is entered on the keyboard
-	 */
-	
-	public HumanPlayer() {
-		
-		setPlayerName(Input);
-		
+	public HumanPlayer(String name) {		
+		setPlayerName(name);
 	}
 	
-	private void setPlayerName(Scanner input) {
-		// TODO Auto-generated method stub
-		this.HumanPlayerName = Input.toString();
+	private void setPlayerName(String name) {
+		this.name = name;
 	}
-
+	
 	// getter method to return the name of the player 
 	public String getPlayerName() {
-		return HumanPlayerName;
+		return name;
 	}	
 	
+	public void addPoints(int num) {
+		this.points += num;
+	}
 	
-	 // This method is to get the entered player's name 
-	 
-	public void getHumanPlayerName() {
-		System.out.println("Please, enter the player's name: ");
-
-		if (Input.hasNext()) {
-			if((Input != null) && (!Input.equals(""))) {
-				setPlayerName(Input);
-			}			
-		}			
-	} 
-
+	public void subtractPoints(int num) {
+		this.points -= num;
+	}
+	
+	public void clearPoints()
+	{
+		this.points = 0;
+	}
+	
+	public void setPoints(int num) {
+		this.points = num;
+	}
+	
+	public int getPoints() {
+		return points;
+	}
+	
+	public void addChip() {
+		chips++;
+	}
+	
+	public void addChips(int num) {
+		chips += num;
+	}
+	
+	public void removeChips(int num) {
+		chips -= num;
+	}
+	
+	public int getChips() {
+		return chips;
+	}
+	
+	public String toString()
+	{
+		String s = ("Player: "+name+"\n"
+				+ "Score: "+points+"\n"
+				+ "Chips: "+chips);
+		return s;
+	}
 }

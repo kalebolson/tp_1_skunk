@@ -1,0 +1,14 @@
+Java Classes specified in class:
+Die
+Player
+Dice
+Roll
+Turn
+Game
+Kitty
+Chip
+
+CRC Cards:
+List name of class
+list responsibilities (what information does it contain, what can it do)
+list collaborations (what objects does it interact with)
