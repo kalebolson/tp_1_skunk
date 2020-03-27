@@ -9,7 +9,7 @@ public class HumanPlayer {
 		setPlayerName(name);
 	}
 	
-	private void setPlayerName(String name) {
+	public void setPlayerName(String name) {
 		this.name = name;
 	}
 	

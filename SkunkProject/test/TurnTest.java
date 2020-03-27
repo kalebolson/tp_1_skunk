@@ -5,14 +5,36 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-class TurnTest {
+class TurnTest 
+{
+	
 	@Test
-public void getScore() {
-		
+	public void test_update_score() 
+	{		
 		Turn t = new Turn(null);
-		t.currentScore = 15;
+		t.updateScore(15);
 		 assertEquals(t.getScore(), 15);
-		
-}
+	}
+	
+	@Test
+	public void test_clear_score()
+	{
+		Turn t = new Turn(null);
+		t.updateScore(20);
+		t.clearScore();
+		assertEquals(t.getScore(), 0);
+	}
+	
+	@Test
+	public void test_end_turn()
+	{
+		HumanPlayer p = new HumanPlayer("John");
+		Turn t = new Turn(p);
+		t.updateScore(13);
+		t.endTurn();
+		assertEquals(p.getPoints(),13);
+	}
+	
+	
 }
 	
