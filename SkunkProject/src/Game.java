@@ -51,6 +51,7 @@ public class Game
 		return dice.toString();
 	}
 	
+	
 	public void endTurn()
 	{
 		currentTurn.endTurn();
@@ -75,5 +76,13 @@ public class Game
 	public Boolean isDeuce()
 	{
 		return dice.isDeuce();
+	}
+	
+	//This method is only for testing purposes
+	public void testDice(int face1, int face2)
+	{
+		TrickDie d1 = new TrickDie(face1);
+		TrickDie d2 = new TrickDie(face2);
+		dice = new Dice(d1,d2);
 	}
 }
