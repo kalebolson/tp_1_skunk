@@ -71,4 +71,30 @@ public class GameTest
 		assertTrue(game.isDeuce());
 	}
 	
+	@Test
+	public void test_last_round()
+	{
+		String[] names = new String[] {"Abby","Ben","Carl","Dave"};
+		Game game = new Game(names);
+		game.getCurrentPlayer().setPoints(110);
+		game.startTurn();
+		game.endTurn();
+		assertTrue(game.lastRound);
+	}
+	
+	@Test
+	public void test_is_over()
+	{
+		String[] names = new String[] {"Abby","Ben","Carl","Dave"};
+		Game game = new Game(names);
+		game.getCurrentPlayer().setPoints(110);
+		for (int i=0; i<names.length-1; i++)
+		{
+			game.startTurn();
+			game.roll();
+			game.endTurn();
+		}
+		assertTrue(game.isOver());
+	}
+	
 }

@@ -7,6 +7,9 @@ public class Game
 	int currentPlayerIndex;
 	Turn currentTurn;
 	Dice dice = new Dice();
+	Boolean lastRound = false;
+	int lastRoundCounter;
+	Boolean isOver = false;
 	
 	
 	public Game(String[] names)
@@ -16,6 +19,7 @@ public class Game
 		{
 			players[i] = new HumanPlayer(names[i]);
 		}
+		lastRoundCounter = players.length-1;
 	}
 	
 	public void setNextPlayer()
@@ -54,8 +58,28 @@ public class Game
 	
 	public void endTurn()
 	{
-		currentTurn.endTurn();
+		currentTurn.endTurn(); //This adds the Turn's points to the player's points
 		currentTurn = null;
+		
+		//Checking to see if we should start the last round, provided
+		//it is not already the last round
+		if (getCurrentPlayer().getPoints() >= 100 && !lastRound)
+		{
+			lastRound = true;
+		}
+		
+		//During the last round, there is a counter equal to the number of players
+		//this counter will decrease by 1 each turn until it hits 0.
+		//Once it hits 0, the boolean isOver becomes true.
+		//The UI checks every turn to see if isOver is true, and responds appropriately.
+		if (lastRound)
+		{
+			lastRoundCounter--;
+			if (lastRoundCounter == 0)
+			{
+				isOver = true;
+			}
+		}
 	}
 	
 	public HumanPlayer getCurrentPlayer()
@@ -76,6 +100,25 @@ public class Game
 	public Boolean isDeuce()
 	{
 		return dice.isDeuce();
+	}
+	
+	public Boolean isOver()
+	{
+		return isOver;
+	}
+	
+	public String results()
+	{
+		String results = "";
+		HumanPlayer winner = players[0];
+		for (HumanPlayer p : players)
+		{
+			results += p.getPlayerName() + ": " + p.getPoints() + "\n";
+			if (p.getPoints() > winner.getPoints())
+				winner = p;
+		}
+		results += "\nThe winner is: " + winner.getPlayerName();
+		return results;
 	}
 	
 	//This method is only for testing purposes
