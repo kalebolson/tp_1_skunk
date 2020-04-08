@@ -35,6 +35,23 @@ class TurnTest
 		assertEquals(p.getPoints(),13);
 	}
 	
+	// newly added tests 
+	@Test
+	public void testTurn() {
+	    HumanPlayer p1 = new HumanPlayer("p1");
+	   
+	    assertEquals(p1, "p1");
+	    
+	}
+	
+	@Test
+	public void testPoints() {
+	    HumanPlayer p1 = new HumanPlayer("p1");
+	   p1.points = 4;
+	    assertEquals(p1.getPoints(), "4");
+	    
+	}
+	
 	
 }
 	
